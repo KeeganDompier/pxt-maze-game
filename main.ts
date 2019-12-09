@@ -1,6 +1,6 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     mySprite.setVelocity(0, 0)
-    game.showLongText("DEAD", DialogLayout.Full)
+    mySprite.destroy(effects.bubbles, 500)
 })
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
@@ -182,14 +182,14 @@ mySprite = sprites.create(img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . 5 5 5 5 5 5 5 . . . . . . . . . . . . 
-. . . . . . . . . . . . 5 5 5 5 5 5 3 . . . . . . . . . . . . . 
-. . . . . . . . . . . . 5 3 3 3 3 3 3 . . . . . . . . . . . . . 
-. . . . . . . . . . . . 3 3 3 8 3 8 3 . . . . . . . . . . . . . 
-. . . . . . . . . . . . 3 3 3 3 2 3 3 . . . . . . . . . . . . . 
-. . . . . . . . . . . . 3 3 3 3 3 3 3 . . . . . . . . . . . . . 
-. . . . . . . . . . a a a a a a a a a a a . . . . . . . . . . . 
-. . . . . . . . . a a a a a a a a a a a a a . . . . . . . . . . 
+. . . . . . . . . . . . . 5 5 5 5 5 . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 5 5 5 5 5 5 5 . . . . . . . . . . . . . 
+. . . . . . . . . . . . 5 3 3 3 3 3 5 . . . . . . . . . . . . . 
+. . . . . . . . . . . . 3 3 8 3 8 3 3 . . . . . . . . . . . . . 
+. . . . . . . . . . . . 3 3 3 2 3 3 3 . . . . . . . . . . . . . 
+. . . . . . . . . . . . 3 2 3 3 3 2 3 . . . . . . . . . . . . . 
+. . . . . . . . . . a a a a 2 2 2 a a a a . . . . . . . . . . . 
+. . . . . . . . . a a a a a a 3 a a a a a a . . . . . . . . . . 
 . . . 3 3 3 3 3 3 a a a a a a a a a a a a a 3 3 3 3 3 3 . . . . 
 . . . . . . . . . a a a a a a a a a a a a a . . . . . . . . . . 
 . . . . . . . . . . . . a a a a a a a . . . . . . . . . . . . . 
@@ -237,4 +237,3 @@ for (let index = 0; index < 40; index++) {
     mySprite.z = 1
     mySprite2.follow(mySprite, 5)
 }
-info.startCountdown(60)
