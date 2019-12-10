@@ -240,7 +240,7 @@ for (let index = 0; index < 50; index++) {
 `, SpriteKind.Enemy)
     mySprite2.setPosition(Math.randomRange(100, 512), Math.randomRange(100, 512))
     mySprite.z = 1
-    mySprite2.follow(mySprite, 60)
+    mySprite2.follow(mySprite, 30)
     info.startCountdown(60)
 }
 forever(function () {
