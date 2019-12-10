@@ -1,9 +1,14 @@
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     mySprite.setVelocity(0, 0)
     mySprite.destroy(effects.bubbles, 500)
+    info.setLife(0)
+})
+info.onCountdownEnd(function () {
+    game.over(true)
 })
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
+info.setLife(1)
 scene.setTileMap(img`
 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
 5 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 d d d d d d d d d 8 8 5 
@@ -187,8 +192,8 @@ mySprite = sprites.create(img`
 . . . . . . . . . . . . 5 3 3 3 3 3 5 . . . . . . . . . . . . . 
 . . . . . . . . . . . . 3 3 8 3 8 3 3 . . . . . . . . . . . . . 
 . . . . . . . . . . . . 3 3 3 2 3 3 3 . . . . . . . . . . . . . 
-. . . . . . . . . . . . 3 2 3 3 3 2 3 . . . . . . . . . . . . . 
-. . . . . . . . . . a a a a 2 2 2 a a a a . . . . . . . . . . . 
+. . . . . . . . . . . . 3 3 3 3 3 3 3 . . . . . . . . . . . . . 
+. . . . . . . . . . a a a a 3 3 3 a a a a . . . . . . . . . . . 
 . . . . . . . . . a a a a a a 3 a a a a a a . . . . . . . . . . 
 . . . 3 3 3 3 3 3 a a a a a a a a a a a a a 3 3 3 3 3 3 . . . . 
 . . . . . . . . . a a a a a a a a a a a a a . . . . . . . . . . 
@@ -214,7 +219,7 @@ mySprite = sprites.create(img`
 controller.moveSprite(mySprite)
 // Camera follows sprite through game
 scene.cameraFollowSprite(mySprite)
-for (let index = 0; index < 40; index++) {
+for (let index = 0; index < 50; index++) {
     mySprite2 = sprites.create(img`
 . . . . . f f f f f . . . . . . 
 . . . . f e e e e e f . . . . . 
@@ -233,7 +238,13 @@ for (let index = 0; index < 40; index++) {
 . f d d f e e f d d b f f f f . 
 . f f f f f f f f f f f f f . . 
 `, SpriteKind.Enemy)
-    mySprite2.setPosition(Math.randomRange(0, 512), Math.randomRange(0, 512))
+    mySprite2.setPosition(Math.randomRange(100, 512), Math.randomRange(100, 512))
     mySprite.z = 1
-    mySprite2.follow(mySprite, 5)
+    mySprite2.follow(mySprite, 60)
+    info.startCountdown(60)
 }
+forever(function () {
+    if (info.life() == 0) {
+        game.over(false)
+    }
+})
